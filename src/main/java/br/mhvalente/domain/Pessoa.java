@@ -1,4 +1,4 @@
-package br.mhvalente.config_hibernate;
+package br.mhvalente.domain;
 
 import java.util.Date;
 
