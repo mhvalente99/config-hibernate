@@ -4,6 +4,7 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -13,6 +14,7 @@ import javax.persistence.TemporalType;
 @Table(name="PESSOA")
 public class Pessoa {
 	@Id //Define que esse campo se PK
+	@GeneratedValue
 	private Long codigo;
 	
 	@Column(name="primeiro_nome") //Altera o nome do campo no banco
