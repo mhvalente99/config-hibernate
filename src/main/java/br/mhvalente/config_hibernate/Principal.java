@@ -5,29 +5,49 @@ import java.util.List;
 
 import javax.swing.JOptionPane;
 
+import br.mhvalente.dao.CidadeDAO;
 import br.mhvalente.dao.PessoaDAO;
+import br.mhvalente.domain.Cidade;
 import br.mhvalente.domain.Pessoa;
 
 public class Principal {
 
 	public static void main(String[] args) throws Exception {
 		
-		Pessoa pes = new Pessoa();
-		pes.setPrimeiroNome("Michel");
-		pes.setUltimoNome("Temer");
-		pes.setDataNascimento(new Date());
-		pes.setAltura(1.98);
+		Cidade tb = new Cidade();
+		tb.setNomeCidade("Maringa");
+		tb.setUfCidade("PR");
 		
 		PessoaDAO dao = new PessoaDAO();
+		CidadeDAO daoCidade = new CidadeDAO();
 		
+		//Cadastrar Cidade
 		try {
-			//pes = dao.salvar(pes);
-			//JOptionPane.showMessageDialog(null, "Cadastrado com sucesso " + pes.getCodigo());
+			tb = daoCidade.salvar(tb);
+			JOptionPane.showMessageDialog(null, "Cidade cadastrada com sucesso ! " + tb.getCodigo());
 		} catch (Exception e) {
 			e.printStackTrace();
 			JOptionPane.showMessageDialog(null, e.getMessage());
 		}
 		
+		Pessoa pes = new Pessoa();
+		pes.setPrimeiroNome("Matheus");
+		pes.setUltimoNome("Henrique");
+		pes.setDataNascimento(new Date());
+		pes.setAltura(1.98);
+		pes.setCidade(tb);
+		
+		
+		//Cadastrar pessoa
+		try {
+			pes = dao.salvar(pes);
+			JOptionPane.showMessageDialog(null, "Cadastrado com sucesso " + pes.getCodigo());
+		} catch (Exception e) {
+			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, e.getMessage());
+		}
+		
+		//Excluir pessoa
 		try {
 			//dao.excluir(pes);	
 		} catch (Exception e) {
@@ -35,6 +55,7 @@ public class Principal {
 			JOptionPane.showMessageDialog(null, e.getMessage());
 		}
 		
+		//Consultar pessoa
 		List<Pessoa> pessoas = dao.buscarTodos();
 		
 		System.out.println("CONSULTANDO PESSOAS");
@@ -64,8 +85,6 @@ public class Principal {
 							  " Nome: " + p.getPrimeiroNome());
 			System.out.println("-------------------------");
 		}
-		
-		
 	}
 
 }
