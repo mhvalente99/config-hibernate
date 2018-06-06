@@ -8,14 +8,16 @@ import javax.swing.JOptionPane;
 import br.mhvalente.dao.CidadeDAO;
 import br.mhvalente.dao.GrupoDAO;
 import br.mhvalente.dao.PessoaDAO;
+import br.mhvalente.dao.VeiculoDAO;
 import br.mhvalente.domain.Cidade;
 import br.mhvalente.domain.Grupo;
 import br.mhvalente.domain.Pessoa;
+import br.mhvalente.domain.Veiculo;
 
 public class Principal {
 
 	public static void main(String[] args) throws Exception {
-		
+				
 		Cidade tb = new Cidade();
 		tb.setNomeCidade("Maringa");
 		tb.setUfCidade("PR");
@@ -42,12 +44,12 @@ public class Principal {
 		Grupo grupo = new Grupo();
 		grupo.setDsGrupo("BEBIDAS");
 		
-		GrupoDAO daoGrupo = new GrupoDAO();
+		//GrupoDAO daoGrupo = new GrupoDAO();
 		
 		//Cadastrar Grupo
 		try {
-			grupo = daoGrupo.salvar(grupo);
-			JOptionPane.showMessageDialog(null, "Grupo cadastrado com sucesso " + grupo.getCodigo());
+			//grupo = daoGrupo.salvar(grupo);
+			//JOptionPane.showMessageDialog(null, "Grupo cadastrado com sucesso " + grupo.getCodigo());
 		} catch (Exception e) {
 			e.printStackTrace();
 			JOptionPane.showMessageDialog(null, e.getMessage());
@@ -66,6 +68,22 @@ public class Principal {
 		//Excluir pessoa
 		try {
 			//dao.excluir(pes);	
+		} catch (Exception e) {
+			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, e.getMessage());
+		}
+		
+		//Cadastrar Veiculo
+		Veiculo veiculo = new Veiculo();
+		veiculo.setPlaca("AXT-7393");
+		veiculo.setRenavam("0000123456322");
+		veiculo.setPessoa(pes);
+		
+		VeiculoDAO daoVeiculo = new VeiculoDAO();
+		
+		try {
+			veiculo = daoVeiculo.salvar(veiculo);
+			JOptionPane.showMessageDialog(null, "Veiculo cadastrado com sucesso " + veiculo.getCodigo());
 		} catch (Exception e) {
 			e.printStackTrace();
 			JOptionPane.showMessageDialog(null, e.getMessage());

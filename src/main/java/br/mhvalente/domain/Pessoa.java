@@ -20,7 +20,7 @@ public class Pessoa {
 	@GeneratedValue
 	private Long codigo;
 	
-	@Column(name="primeiro_nome") //Altera o nome do campo no banco
+	@Column(name="primeiro_nome", nullable=false) //Altera o nome do campo no banco
 	private String primeiroNome;
 	
 	@Column(name="ultimo_nome")
@@ -33,6 +33,7 @@ public class Pessoa {
 	@Column(scale=1, precision=2)
 	private Double altura;
 	
+	//Testar sem o JoinColumn
 	@ManyToOne
 	@JoinColumn(name="id_cidade") //alterar o nome do campo da FK
 	private Cidade cidade;
