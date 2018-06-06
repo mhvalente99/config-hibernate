@@ -6,8 +6,10 @@ import java.util.List;
 import javax.swing.JOptionPane;
 
 import br.mhvalente.dao.CidadeDAO;
+import br.mhvalente.dao.GrupoDAO;
 import br.mhvalente.dao.PessoaDAO;
 import br.mhvalente.domain.Cidade;
+import br.mhvalente.domain.Grupo;
 import br.mhvalente.domain.Pessoa;
 
 public class Principal {
@@ -36,6 +38,20 @@ public class Principal {
 		pes.setDataNascimento(new Date());
 		pes.setAltura(1.98);
 		pes.setCidade(tb);
+		
+		Grupo grupo = new Grupo();
+		grupo.setDsGrupo("BEBIDAS");
+		
+		GrupoDAO daoGrupo = new GrupoDAO();
+		
+		//Cadastrar Grupo
+		try {
+			grupo = daoGrupo.salvar(grupo);
+			JOptionPane.showMessageDialog(null, "Grupo cadastrado com sucesso " + grupo.getCodigo());
+		} catch (Exception e) {
+			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, e.getMessage());
+		}
 		
 		
 		//Cadastrar pessoa
